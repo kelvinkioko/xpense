@@ -55,3 +55,16 @@ jobs:
         with:
           name: "android-lint-report"
           path: ./**/build/reports/lint-results.xml
+
+  ktlint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Android lint checker"
+        uses: actions/checkout@v2
+
+      - name: "Make gradle executable"
+        run: chmod +x ./gradlew
+
+      - name: "KTLint"
+        run: ./gradlew ktlintCheck
