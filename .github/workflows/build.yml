@@ -1,0 +1,21 @@
+name: Xpense CI
+
+on:
+  push:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Build Xpense"
+        uses: actions/checkout@v2
+
+      - name: "Make gradle executable"
+        run: chmod +x ./gradlew
+
+      - name: "Build"
+        run: ./gradlew build
