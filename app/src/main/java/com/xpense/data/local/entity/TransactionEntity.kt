@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "account_transactions")
-data class AccountTransactionEntity(
+@Entity(tableName = "transactions")
+data class TransactionEntity(
     @PrimaryKey
     @ColumnInfo(name = "transaction_identifier")
     val transactionIdentifier: String = "",

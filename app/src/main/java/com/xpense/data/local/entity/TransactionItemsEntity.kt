@@ -4,11 +4,11 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "account_sub_transactions")
-data class AccountSubTransactionEntity(
+@Entity(tableName = "transaction_item")
+data class TransactionItemsEntity(
     @PrimaryKey
-    @ColumnInfo(name = "sub_transaction_identifier")
-    val subTransactionIdentifier: String = "",
+    @ColumnInfo(name = "item_identifier")
+    val itemIdentifier: String = "",
     @ColumnInfo(name = "transaction_identifier")
     val transactionIdentifier: String = "",
     @ColumnInfo(name = "name")
