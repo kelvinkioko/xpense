@@ -8,7 +8,9 @@ import com.xpense.data.local.entity.TransactionItemsEntity
 import com.xpense.domain.repository.TransactionRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class TransactionRepositoryImpl @Inject constructor(
     xpenseDatabase: XpenseDatabase
 ) : TransactionRepository {

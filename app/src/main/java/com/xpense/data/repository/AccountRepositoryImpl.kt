@@ -13,7 +13,7 @@ class AccountRepositoryImpl @Inject constructor(
     xpenseDatabase: XpenseDatabase
 ) : AccountRepository {
 
-    val accountDao: AccountDao = xpenseDatabase.accountDao()
+    private val accountDao: AccountDao = xpenseDatabase.accountDao()
 
     override suspend fun insertAccount(accountEntity: AccountEntity) {
         accountDao.insertAccount(accountEntity = accountEntity)

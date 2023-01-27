@@ -6,7 +6,9 @@ import com.xpense.data.local.entity.CategoryEntity
 import com.xpense.domain.repository.CategoryRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class CategoryRepositoryImpl @Inject constructor(
     xpenseDatabase: XpenseDatabase
 ) : CategoryRepository {

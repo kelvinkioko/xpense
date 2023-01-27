@@ -6,7 +6,9 @@ import com.xpense.data.local.entity.CurrencyEntity
 import com.xpense.domain.repository.CurrencyRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class CurrencyRepositoryImpl @Inject constructor(
     xpenseDatabase: XpenseDatabase
 ) : CurrencyRepository {
