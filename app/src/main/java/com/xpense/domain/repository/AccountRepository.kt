@@ -12,9 +12,9 @@ interface AccountRepository {
 
     suspend fun loadAccounts(): Flow<List<AccountEntity>>
 
-    fun areThereAccounts(): Int
+    suspend fun areThereAccounts(): Int
 
-    fun doesAccountExistWithEmail(accountNumber: String): Int
+    suspend fun doesAccountExistWithEmail(accountNumber: String): Int
 
     suspend fun deleteAccount(accountEntity: AccountEntity)
 }

@@ -23,10 +23,10 @@ interface AccountDao {
     suspend fun loadAccounts(): Flow<List<AccountEntity>>
 
     @Query("SELECT COUNT(accountNumber) FROM account")
-    fun areThereAccounts(): Int
+    suspend fun areThereAccounts(): Int
 
     @Query("SELECT COUNT(accountNumber) FROM account WHERE accountNumber =:accountNumber")
-    fun doesAccountExistWithEmail(accountNumber: String): Int
+    suspend fun doesAccountExistWithEmail(accountNumber: String): Int
 
     @Delete
     suspend fun deleteAccount(accountEntity: AccountEntity)
