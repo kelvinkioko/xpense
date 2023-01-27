@@ -20,7 +20,7 @@ interface AccountDao {
     suspend fun updateAccountBalance(balance: String, accountNumber: String): Int
 
     @Query("SELECT * FROM account")
-    suspend fun loadAccounts(): Flow<AccountEntity>
+    suspend fun loadAccounts(): Flow<List<AccountEntity>>
 
     @Query("SELECT COUNT(accountNumber) FROM account")
     fun areThereAccounts(): Int
