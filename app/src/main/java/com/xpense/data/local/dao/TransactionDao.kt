@@ -11,11 +11,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TransactionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTransaction(TransactionEntity: TransactionEntity)
+    suspend fun insertTransaction(transactionEntity: TransactionEntity)
 
-    @Query("SELECT * FROM transaction")
-    suspend fun loadTransaction(): Flow<List<TransactionEntity>>
+    @Query("SELECT * FROM transaction WHERE account_number =:accountNumber")
+    suspend fun loadTransaction(accountNumber: String): Flow<List<TransactionEntity>>
+
+    @Query("DELETE FROM transaction WHERE account_number =:accountNumber")
+    suspend fun deleteTransactionItemsByAN(accountNumber: String)
 
     @Delete
-    suspend fun deleteTransaction(TransactionEntity: TransactionEntity)
+    suspend fun deleteTransaction(transactionEntity: TransactionEntity)
 }
