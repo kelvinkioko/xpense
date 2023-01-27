@@ -1,7 +1,7 @@
 
 # Xpense
 
-[![Actions Status](https://github.com/kelvinkioko/xpense/workflows/Xpense%20CI/badge.svg)](https://github.com/kelvinkioko/preshama-feeds/actions)
+[![Actions Status](https://github.com/kelvinkioko/xpense/workflows/Xpense%20CI/badge.svg)](https://github.com/kelvinkioko/xpense/actions)
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.3.71-blue.svg)](http://kotlinlang.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
