@@ -13,7 +13,7 @@ interface CategoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCategory(categoryEntity: CategoryEntity)
 
-    @Query("SELECT * FROM Category")
+    @Query("SELECT * FROM category")
     suspend fun loadCategory(): Flow<List<CategoryEntity>>
 
     @Delete

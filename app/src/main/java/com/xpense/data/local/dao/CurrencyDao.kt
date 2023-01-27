@@ -13,7 +13,7 @@ interface CurrencyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCurrency(currencyEntity: CurrencyEntity)
 
-    @Query("SELECT * FROM Currency")
+    @Query("SELECT * FROM currency")
     suspend fun loadCurrency(): Flow<List<CurrencyEntity>>
 
     @Delete
