@@ -88,11 +88,6 @@ fun XpenseTheme(
     } else {
         if (darkTheme) DarkColorPalette else LightColorPalette
     }
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
 
     androidx.compose.material3.MaterialTheme(
         colorScheme = colorScheme,
