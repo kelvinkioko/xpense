@@ -302,7 +302,7 @@ fun VerticalProgressBar(
             cap = StrokeCap.Round,
             strokeWidth = 96.0f,
             start = Offset(x = 0f, y = size.height),
-            end = Offset(x = 0f, y = 0.0f)
+            end = Offset(x = progress, y = 0.0f)
         )
     }
 }
