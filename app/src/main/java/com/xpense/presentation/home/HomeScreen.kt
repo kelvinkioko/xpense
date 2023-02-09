@@ -4,7 +4,6 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -269,7 +268,7 @@ fun VerticalProgressBar(
     animationDelay: Int = 0
 ) {
     val animateNumber = animateFloatAsState(
-        targetValue = 10.0f,
+        targetValue = 100.0f,
         animationSpec = tween(
             durationMillis = animationDuration,
             delayMillis = animationDelay
@@ -278,7 +277,6 @@ fun VerticalProgressBar(
 
     Canvas(
         modifier = Modifier
-            .border(2.dp, color = Color.Red)
             .padding(start = indicatorPadding, top = 14.dp, end = indicatorPadding)
             .height(100.dp)
             .width(indicatorWidth)
@@ -296,13 +294,16 @@ fun VerticalProgressBar(
         val progress =
             (animateNumber.value / 100) * size.height // size.width returns the width of the canvas
 
+        println("@@@ height ${size.height}")
+        println("@@@ progress $progress")
+
         // Foreground indicator
         drawLine(
             color = progressColor,
             cap = StrokeCap.Round,
             strokeWidth = 96.0f,
             start = Offset(x = 0f, y = size.height),
-            end = Offset(x = progress, y = 0.0f)
+            end = Offset(x = 0f, y = progress)
         )
     }
 }
