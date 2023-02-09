@@ -1,8 +1,5 @@
 package com.xpense.presentation.home
 
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,12 +28,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.airbnb.lottie.compose.LottieAnimation
@@ -44,6 +38,8 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieAnimatable
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.xpense.R
+import com.xpense.presentation.home.components.HorizontalProgressBar
+import com.xpense.presentation.home.components.VerticalProgressBar
 import com.xpense.ui.theme.Shapes
 import com.xpense.ui.theme.XpenseTheme
 import com.xpense.ui.theme.xpenseFont
@@ -131,6 +127,10 @@ fun HomeScreen() {
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     AnalyticsProgress()
+                    AnalyticsProgress()
+                    AnalyticsProgress()
+                    AnalyticsProgress()
+                    AnalyticsProgress()
                 }
             }
         }
@@ -195,115 +195,19 @@ fun AnalyticsProgress() {
         modifier = Modifier.padding(vertical = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        VerticalProgressBar()
+        VerticalProgressBar(
+            indicatorWidth = 12.dp
+        )
 
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(
-            text = "Monday",
+            text = "Mon",
             color = Color.DarkGray,
             modifier = Modifier
                 .alpha(0.8f),
             fontFamily = xpenseFont,
-            fontSize = 16.sp
-        )
-    }
-}
-
-@Composable
-fun HorizontalProgressBar(
-    indicatorHeight: Dp = 8.dp,
-    backgroundIndicatorColor: Color = Color.LightGray.copy(alpha = 0.3f),
-    indicatorPadding: Dp = 4.dp,
-    progressColor: Color = MaterialTheme3.colorScheme.onTertiary,
-    animationDuration: Int = 1000,
-    animationDelay: Int = 0
-) {
-
-    val animateNumber = animateFloatAsState(
-        targetValue = 10.0f,
-        animationSpec = tween(
-            durationMillis = animationDuration,
-            delayMillis = animationDelay
-        )
-    )
-
-    Canvas(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(indicatorHeight)
-            .padding(start = indicatorPadding, end = indicatorPadding)
-    ) {
-        // Background indicator
-        drawLine(
-            color = backgroundIndicatorColor,
-            cap = StrokeCap.Round,
-            strokeWidth = size.height,
-            start = Offset(x = 0f, y = 0f),
-            end = Offset(x = size.width, y = 0f)
-        )
-
-        // Convert the downloaded percentage into progress (width of foreground indicator)
-        val progress =
-            (animateNumber.value / 100) * size.width // size.width returns the width of the canvas
-
-        // Foreground indicator
-        drawLine(
-            color = progressColor,
-            cap = StrokeCap.Round,
-            strokeWidth = size.height,
-            start = Offset(x = 0f, y = 0f),
-            end = Offset(x = progress, y = 0f)
-        )
-    }
-}
-
-@Composable
-fun VerticalProgressBar(
-    indicatorWidth: Dp = 2.dp,
-    backgroundIndicatorColor: Color = Color.LightGray.copy(alpha = 0.6f),
-    indicatorPadding: Dp = 0.dp,
-    progressColor: Color = MaterialTheme3.colorScheme.tertiary,
-    animationDuration: Int = 1000,
-    animationDelay: Int = 0
-) {
-    val animateNumber = animateFloatAsState(
-        targetValue = 100.0f,
-        animationSpec = tween(
-            durationMillis = animationDuration,
-            delayMillis = animationDelay
-        )
-    )
-
-    Canvas(
-        modifier = Modifier
-            .padding(start = indicatorPadding, top = 14.dp, end = indicatorPadding)
-            .height(100.dp)
-            .width(indicatorWidth)
-    ) {
-        // Background indicator
-        drawLine(
-            color = backgroundIndicatorColor,
-            cap = StrokeCap.Round,
-            strokeWidth = 96.0f,
-            start = Offset(x = 0f, y = 0f),
-            end = Offset(x = 0f, y = size.height)
-        )
-
-        // Convert the downloaded percentage into progress (width of foreground indicator)
-        val progress =
-            (animateNumber.value / 100) * size.height // size.width returns the width of the canvas
-
-        println("@@@ height ${size.height}")
-        println("@@@ progress $progress")
-
-        // Foreground indicator
-        drawLine(
-            color = progressColor,
-            cap = StrokeCap.Round,
-            strokeWidth = 96.0f,
-            start = Offset(x = 0f, y = size.height),
-            end = Offset(x = 0f, y = progress)
+            fontSize = 14.sp
         )
     }
 }
