@@ -41,7 +41,6 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieAnimatable
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.xpense.R
-import com.xpense.presentation.home.components.HorizontalProgressBar
 import com.xpense.presentation.home.components.VerticalProgressBar
 import com.xpense.ui.theme.Shapes
 import com.xpense.ui.theme.XpenseTheme
@@ -170,7 +169,7 @@ fun AccountCard() {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
-                modifier = Modifier.padding(20.dp),
+                modifier = Modifier.padding(16.dp),
             ) {
                 Text(
                     text = "Saving",
@@ -179,7 +178,7 @@ fun AccountCard() {
                     fontSize = 24.sp
                 )
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
                 Text(
                     text = "Total Balance",
@@ -209,10 +208,10 @@ fun AccountCard() {
             }
 
             VerticalProgressBar(
-                indicatorHeight = 155.dp,
-                indicatorWidth = 8.dp,
-                backgroundIndicatorColor = Color.White,
-                progressColor = MaterialTheme3.colorScheme.primary
+                indicatorHeight = 135.dp,
+                indicatorWidth = 12.dp,
+                backgroundIndicatorColor = Color.Black.copy(alpha = 0.3f),
+                progressColor = Color.White
             )
         }
     }
