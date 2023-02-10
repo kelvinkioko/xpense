@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun VerticalProgressBar(
+    indicatorHeight: Dp = 100.dp,
     indicatorWidth: Dp = 12.dp,
     backgroundIndicatorColor: Color = Color.LightGray.copy(alpha = 0.6f),
     indicatorPadding: Dp = 0.dp,
@@ -38,7 +39,7 @@ fun VerticalProgressBar(
     Canvas(
         modifier = Modifier
             .padding(start = indicatorPadding, top = 14.dp, end = indicatorPadding)
-            .height(100.dp)
+            .height(indicatorHeight)
             .width(indicatorWidth)
     ) {
         val centerXPosition = size.width / 2

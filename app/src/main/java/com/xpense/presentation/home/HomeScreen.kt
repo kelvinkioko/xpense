@@ -24,11 +24,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -112,7 +115,7 @@ fun HomeScreen() {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = "Analytics",
+                    text = "Activities",
                     fontFamily = xpenseFont,
                     fontWeight = FontWeight.Bold,
                     fontSize = 24.sp,
@@ -137,6 +140,15 @@ fun HomeScreen() {
 
 @Composable
 fun AccountCard() {
+    // Get local density from composable
+    val localDensity = LocalDensity.current
+
+    // Create element height in pixel state
+    var columnHeightPx by remember { mutableStateOf(0f) }
+
+    // Create element height in dp state
+    var columnHeightDp by remember { mutableStateOf(0.dp) }
+
     Card(
         backgroundColor = MaterialTheme3.colorScheme.tertiary,
         modifier = Modifier
@@ -148,11 +160,27 @@ fun AccountCard() {
         shape = RoundedCornerShape(12.dp)
     ) {
         Row(
+            modifier = Modifier
+                .padding(end = 20.dp)
+                .onGloballyPositioned { coordinates ->
+                    // Set column height using the LayoutCoordinates
+                    columnHeightPx = coordinates.size.height.toFloat()
+                    columnHeightDp = with(localDensity) { coordinates.size.height.toDp() }
+                },
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
                 modifier = Modifier.padding(20.dp),
             ) {
+                Text(
+                    text = "Saving",
+                    color = Color.White,
+                    fontFamily = xpenseFont,
+                    fontSize = 24.sp
+                )
+
+                Spacer(modifier = Modifier.height(32.dp))
+
                 Text(
                     text = "Total Balance",
                     color = Color.LightGray,
@@ -170,12 +198,8 @@ fun AccountCard() {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                HorizontalProgressBar()
-
-                Spacer(modifier = Modifier.height(16.dp))
-
                 Text(
-                    text = "440002379236",
+                    text = "**** 9236",
                     color = Color.White,
                     modifier = Modifier
                         .alpha(0.8f),
@@ -183,6 +207,13 @@ fun AccountCard() {
                     fontSize = 16.sp
                 )
             }
+
+            VerticalProgressBar(
+                indicatorHeight = 155.dp,
+                indicatorWidth = 8.dp,
+                backgroundIndicatorColor = Color.White,
+                progressColor = MaterialTheme3.colorScheme.primary
+            )
         }
     }
 }
