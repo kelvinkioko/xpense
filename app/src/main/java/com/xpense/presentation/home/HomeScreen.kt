@@ -174,7 +174,7 @@ fun AccountCard() {
 
                 HorizontalProgressBar()
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
                     text = "440002379236",
@@ -199,7 +199,7 @@ fun AnalyticsProgress() {
             indicatorWidth = 12.dp
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = "Mon",

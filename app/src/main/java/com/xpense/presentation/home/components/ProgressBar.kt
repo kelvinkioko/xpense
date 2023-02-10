@@ -41,27 +41,26 @@ fun VerticalProgressBar(
             .height(100.dp)
             .width(indicatorWidth)
     ) {
+        val centerXPosition = size.width / 2
+
         // Background indicator
         drawLine(
             color = backgroundIndicatorColor,
             cap = StrokeCap.Round,
             strokeWidth = size.width,
-            start = Offset(x = 0f, y = 0f),
-            end = Offset(x = 0f, y = size.height)
+            start = Offset(x = centerXPosition, y = 0f),
+            end = Offset(x = centerXPosition, y = size.height)
         )
 
         val progressHeight = (animateNumber.value / 100) * size.height // size.height returns the width of the canvas
-
-        println("@@@ height ${size.height}")
-        println("@@@ progress $progress")
 
         // Foreground indicator
         drawLine(
             color = progressColor,
             cap = StrokeCap.Round,
             strokeWidth = size.width,
-            start = Offset(x = 0f, y = size.height),
-            end = Offset(x = 0f, y = progressHeight)
+            start = Offset(x = centerXPosition, y = size.height),
+            end = Offset(x = centerXPosition, y = progressHeight)
         )
     }
 }
