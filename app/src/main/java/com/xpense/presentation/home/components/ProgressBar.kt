@@ -3,6 +3,7 @@ package com.xpense.presentation.home.components
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -13,8 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.xpense.presentation.home.HomeScreen
+import com.xpense.ui.theme.XpenseTheme
 
 @Composable
 fun VerticalProgressBar(
@@ -41,6 +45,7 @@ fun VerticalProgressBar(
             .padding(start = indicatorPadding, top = 14.dp, end = indicatorPadding)
             .height(indicatorHeight)
             .width(indicatorWidth)
+            .border(width = 2.dp, color = Color.Red)
     ) {
         val centerXPosition = size.width / 2
 
@@ -111,5 +116,13 @@ fun HorizontalProgressBar(
             start = Offset(x = 0f, y = 0f),
             end = Offset(x = progress, y = 0f)
         )
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun ProgressPreview() {
+    XpenseTheme {
+        HomeScreen()
     }
 }

@@ -132,6 +132,15 @@ fun HomeScreen() {
                     AnalyticsProgress()
                     AnalyticsProgress()
                 }
+
+                Text(
+                    text = "Transaction",
+                    fontFamily = xpenseFont,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 24.sp,
+                    maxLines = 1,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
             }
         }
     }
@@ -208,8 +217,8 @@ fun AccountCard() {
             }
 
             VerticalProgressBar(
-                indicatorHeight = 135.dp,
-                indicatorWidth = 12.dp,
+                indicatorHeight = 130.dp,
+                indicatorWidth = 24.dp,
                 backgroundIndicatorColor = Color.Black.copy(alpha = 0.3f),
                 progressColor = Color.White
             )
