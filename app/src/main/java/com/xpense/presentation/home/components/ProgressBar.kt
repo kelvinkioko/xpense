@@ -3,7 +3,6 @@ package com.xpense.presentation.home.components
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -42,10 +41,9 @@ fun VerticalProgressBar(
 
     Canvas(
         modifier = Modifier
-            .padding(start = indicatorPadding, top = 14.dp, end = indicatorPadding)
+            .padding(start = indicatorPadding, top = 24.dp, end = indicatorPadding)
             .height(indicatorHeight)
             .width(indicatorWidth)
-            .border(width = 2.dp, color = Color.Red)
     ) {
         val centerXPosition = size.width / 2
 

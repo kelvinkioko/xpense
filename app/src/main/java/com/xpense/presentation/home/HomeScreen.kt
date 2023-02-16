@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -34,6 +35,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.airbnb.lottie.compose.LottieAnimation
@@ -52,6 +54,16 @@ fun HomeScreen() {
     val speed = remember { mutableStateOf(0f) }
     val lottieAnimatable = rememberLottieAnimatable()
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.menu_icon))
+
+    // Get local density from composable
+    val localDensity = LocalDensity.current
+
+    // Create element height in pixel state
+    var columnHeightPx by remember { mutableStateOf(0f) }
+
+    // Create element height in dp state
+    var columnHeightDp by remember { mutableStateOf(0.dp) }
+    var cardWidthDp by remember { mutableStateOf(0.dp) }
 
     LaunchedEffect(speed.value) {
         lottieAnimatable.animate(
@@ -103,13 +115,25 @@ fun HomeScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
+                .onGloballyPositioned { coordinates ->
+                    cardWidthDp = with(localDensity) {
+                        (coordinates.size.width * 0.7)
+                            .toInt()
+                            .toDp()
+                    }
+                }
         ) {
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
                     .fillMaxHeight()
             ) {
-                AccountCard()
+                LazyRow {
+                    item {
+                        AccountCard(cardWidthDp = cardWidthDp)
+                        AccountCard(cardWidthDp = cardWidthDp)
+                    }
+                }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -147,7 +171,7 @@ fun HomeScreen() {
 }
 
 @Composable
-fun AccountCard() {
+fun AccountCard(cardWidthDp: Dp) {
     // Get local density from composable
     val localDensity = LocalDensity.current
 
@@ -162,29 +186,29 @@ fun AccountCard() {
         modifier = Modifier
             .clip(shape = Shapes.large)
             .padding(horizontal = 16.dp)
-            .fillMaxWidth()
+            .width(cardWidthDp)
             .wrapContentHeight(),
         elevation = 4.dp,
         shape = RoundedCornerShape(12.dp)
     ) {
         Row(
-            modifier = Modifier
-                .padding(end = 20.dp)
-                .onGloballyPositioned { coordinates ->
-                    // Set column height using the LayoutCoordinates
-                    columnHeightPx = coordinates.size.height.toFloat()
-                    columnHeightDp = with(localDensity) { coordinates.size.height.toDp() }
-                },
+            modifier = Modifier.padding(end = 20.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier
+                    .padding(16.dp)
+                    .onGloballyPositioned { coordinates ->
+                        // Set column height using the LayoutCoordinates
+                        columnHeightPx = coordinates.size.height.toFloat()
+                        columnHeightDp = with(localDensity) { coordinates.size.height.toDp() }
+                    },
             ) {
                 Text(
                     text = "Saving",
                     color = Color.White,
                     fontFamily = xpenseFont,
-                    fontSize = 24.sp
+                    fontSize = 20.sp
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -198,10 +222,10 @@ fun AccountCard() {
                 )
 
                 Text(
-                    text = "$28,067.57",
+                    text = "$2,888,067.57",
                     color = Color.White,
                     fontFamily = xpenseFont,
-                    fontSize = 30.sp
+                    fontSize = 28.sp
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -217,8 +241,8 @@ fun AccountCard() {
             }
 
             VerticalProgressBar(
-                indicatorHeight = 130.dp,
-                indicatorWidth = 24.dp,
+                indicatorHeight = columnHeightDp - 16.dp,
+                indicatorWidth = 14.dp,
                 backgroundIndicatorColor = Color.Black.copy(alpha = 0.3f),
                 progressColor = Color.White
             )
