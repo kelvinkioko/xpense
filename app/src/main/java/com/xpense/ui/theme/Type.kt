@@ -9,10 +9,10 @@ import androidx.compose.ui.unit.sp
 import com.xpense.R
 
 val xpenseFont = FontFamily(
+    Font(R.font.urbanist_medium),
     Font(R.font.urbanist_bold),
     Font(R.font.urbanist_extrabold),
     Font(R.font.urbanist_extralight),
-    Font(R.font.urbanist_medium),
     Font(R.font.urbanist_semibold)
 )
 
