@@ -17,6 +17,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
+import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -138,7 +139,7 @@ fun HomeScreen() {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = "Activities",
+                    text = "Recent Transactions",
                     fontFamily = xpenseFont,
                     fontWeight = FontWeight.Bold,
                     fontSize = 24.sp,
@@ -146,25 +147,9 @@ fun HomeScreen() {
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    AnalyticsProgress()
-                    AnalyticsProgress()
-                    AnalyticsProgress()
-                    AnalyticsProgress()
-                    AnalyticsProgress()
-                }
+                Spacer(modifier = Modifier.height(8.dp))
 
-                Text(
-                    text = "Transaction",
-                    fontFamily = xpenseFont,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp,
-                    maxLines = 1,
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                )
+                TransactionItem()
             }
         }
     }
@@ -251,24 +236,91 @@ fun AccountCard(cardWidthDp: Dp) {
 }
 
 @Composable
-fun AnalyticsProgress() {
-    Column(
-        modifier = Modifier.padding(vertical = 16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+fun TransactionItem() {
+    Card(
+        modifier = Modifier
+            .clip(shape = Shapes.large)
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .fillMaxWidth(),
+        shape = RoundedCornerShape(12.dp)
     ) {
-        VerticalProgressBar(
-            indicatorWidth = 12.dp
-        )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Tuesday 14, 2023",
+                    color = Color.Black,
+                    fontFamily = xpenseFont,
+                    fontSize = 16.sp,
+                    modifier = Modifier
+                        .alpha(0.8f)
+                )
 
-        Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = "KES 1500.00",
+                    color = MaterialTheme3.colorScheme.primary,
+                    fontFamily = xpenseFont,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 16.sp
+                )
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Divider(
+                color = Color.LightGray,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(1.dp)
+                    .alpha(0.2f)
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                SingleTransactionItem()
+                SingleTransactionItem()
+            }
+        }
+    }
+}
+
+@Composable
+fun SingleTransactionItem() {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Column {
+            Text(
+                text = "Savings",
+                color = Color.DarkGray,
+                fontFamily = xpenseFont,
+                fontSize = 16.sp
+            )
+
+            Text(
+                text = "Save for a new car",
+                color = Color.LightGray,
+                fontFamily = xpenseFont,
+                fontWeight = FontWeight.Normal,
+                fontSize = 16.sp
+            )
+        }
 
         Text(
-            text = "Mon",
+            text = "KES 100.00",
             color = Color.DarkGray,
-            modifier = Modifier
-                .alpha(0.8f),
             fontFamily = xpenseFont,
-            fontSize = 14.sp
+            fontSize = 16.sp
         )
     }
 }

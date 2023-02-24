@@ -26,5 +26,5 @@ data class TransactionEntity(
     @ColumnInfo(name = "date_updated")
     val dateUpdated: String = "",
     @ColumnInfo(name = "date_created")
-    val dateCreated: String = "",
+    val dateCreated: String = ""
 )
